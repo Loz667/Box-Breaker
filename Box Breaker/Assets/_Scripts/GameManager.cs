@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public bool isGameActive;
 
     public GameObject startScreen;
+    public GameObject highScoresTable;
     public GameObject gameOverScreen;
 
     public TextMeshProUGUI scoreText;
@@ -51,6 +52,7 @@ public class GameManager : MonoBehaviour
     {
         isGameActive = false;
         gameOverScreen.gameObject.SetActive(true);
+        highScoresTable.gameObject.SetActive(true);
     }
 
     public void RestartGame()
