@@ -24,14 +24,19 @@ public class Target : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Destroy(gameObject);
-        Instantiate(explosion, transform.position, explosion.transform.rotation);
-        GameManager.Instance.UpdateScore(pointValue);
+        if (GameManager.Instance.isGameActive)
+        {
+            Destroy(gameObject);
+            Instantiate(explosion, transform.position, explosion.transform.rotation);
+            GameManager.Instance.UpdateScore(pointValue);
+        }        
     }
 
     private void OnTriggerEnter(Collider other)
     {
         Destroy (gameObject);
+        if (!gameObject.CompareTag("Bad"))
+            GameManager.Instance.GameOver();
     }
 
     Vector3 RandomForce()

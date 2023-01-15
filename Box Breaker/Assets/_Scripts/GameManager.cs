@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
+
+    public bool isGameActive;
+
+    public GameObject startScreen;
+    public GameObject gameOverScreen;
 
     public TextMeshProUGUI scoreText;
 
@@ -31,16 +37,30 @@ public class GameManager : MonoBehaviour
         _instance = this;
     }
 
-    private void Start()
+    public void StartGame()
     {
+        isGameActive = true;
+        startScreen.gameObject.SetActive(false);
         StartCoroutine(SpawnTarget());
+        scoreText.gameObject.SetActive(true);
         score = 0;
         UpdateScore(0);
     }
 
+    public void GameOver()
+    {
+        isGameActive = false;
+        gameOverScreen.gameObject.SetActive(true);
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     IEnumerator SpawnTarget()
     {
-        while (true)
+        while (isGameActive)
         {
             yield return new WaitForSeconds(spawnRate);
             int index = Random.Range(0, targets.Count);
