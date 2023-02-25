@@ -1,5 +1,5 @@
 # Box-Breaker
- A 2D clicker game, created as part of a Live Creator Challenge for my Mastered bootcamp
+ A 2D clicker game, created as part of Live Creator Challenge 1 of my Mastered bootcamp
  
  
 
